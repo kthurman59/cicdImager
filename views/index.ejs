@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CI/CD Pipeline Visualizer</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>CI/CD Pipeline Visualizer</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="pipelineFile">Upload your CI/CD YAML file:</label><br>
+        <input type="file" name="pipelineFile" id="pipelineFile" accept=".yml, .yaml" required>
+        <br><br>
+        <button type="submit">Visualize Pipeline</button>
+    </form>
+</body>
+</html>
