@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CI/CD Pipeline Visualizer</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <!-- Include Mermaid.js from a CDN -->
+    <!-- Include Mermaid.js from CDN -->
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
 </head>
@@ -19,13 +20,35 @@
         <button type="submit">Visualize Pipeline</button>
     </form>
 
-    <!-- Container for the Mermaid diagram -->
-    <div class="mermaid">
-        %% Your Mermaid diagram code goes here %%
+    <!-- Placeholder for the Mermaid diagram -->
+    <div id="mermaidDiagram" class="mermaid">
+        %%{init: {"themeVariables": {"primaryColor": "#ffcc00"}}}%%
         graph TD
             A[Start] --> B[Process]
             B --> C[End]
     </div>
+
+    <script>
+        // Function to update the diagram after uploading the YAML file
+        function updateDiagram(yamlData) {
+            // Process YAML data and update the DOM with new diagram content
+            // For example, replace the innerHTML of the diagram container
+            document.getElementById('mermaidDiagram').innerHTML = yamlData;
+
+            // After updating the DOM, call mermaid.contentLoaded()
+            mermaid.contentLoaded();
+        }
+
+        // Example: Simulate updating the diagram with new YAML data
+        // In a real scenario, this data would come from the server after processing the uploaded file
+        const newYamlData = `
+            %%{init: {"themeVariables": {"primaryColor": "#ffcc00"}}}%%
+            graph TD
+                A[Start] --> B[Process]
+                B --> C[End]
+        `;
+        updateDiagram(newYamlData);
+    </script>
 </body>
 </html>
 
