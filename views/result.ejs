@@ -13,14 +13,15 @@
 <body>
   <h1>CI/CD Pipeline Diagram</h1>
   <div class="mermaid">
-    <%= diagram %>
+    <%- diagram %>
   </div>
   <br>
   <a href="/">Upload Another File</a>
   <script>
-    // Reinitialize Mermaid after the DOM has fully loaded to ensure proper rendering.
+    // Explicitly initialize Mermaid on the container element.
     document.addEventListener("DOMContentLoaded", function() {
-      mermaid.contentLoaded();
+      const mermaidElements = document.querySelectorAll('.mermaid');
+      mermaid.init(undefined, mermaidElements);
     });
   </script>
 </body>

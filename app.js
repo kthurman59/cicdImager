@@ -93,6 +93,7 @@ app.post('/upload', upload.single('pipelineFile'), (req, res) => {
     const fileContent = fs.readFileSync(req.file.path, 'utf8');
     const data = yaml.load(fileContent);
     const mermaidDiagram = generateMermaidDiagram(data);
+    console.log("Generated Mermaid Diagram:\n", mermaidDiagram);
     // Clean up uploaded file 
     fs.unlinkSync(req.file.path);
     res.render('result', { diagram: mermaidDiagram });
