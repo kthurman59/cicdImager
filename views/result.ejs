@@ -7,21 +7,29 @@
   <!-- Load Mermaid via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
-    mermaid.initialize({ startOnLoad: true });
+    // Disable auto-start so we can render explicitly.
+    mermaid.initialize({ startOnLoad: false });
   </script>
 </head>
 <body>
   <h1>CI/CD Pipeline Diagram</h1>
-  <div class="mermaid">
-    <%- diagram %>
-  </div>
+  <!-- Container for the rendered diagram -->
+  <div id="mermaidChart" class="mermaid"></div>
+  <!-- Hidden element that holds the raw Mermaid diagram text.
+       Using type="text/plain" preserves whitespace exactly as generated. -->
+  <script type="text/plain" id="mermaid-content"><%- diagram %></script>
   <br>
   <a href="/">Upload Another File</a>
   <script>
-    // Explicitly initialize Mermaid on the container element.
     document.addEventListener("DOMContentLoaded", function() {
-      const mermaidElements = document.querySelectorAll('.mermaid');
-      mermaid.init(undefined, mermaidElements);
+      // Retrieve the raw diagram text from the hidden script element.
+      var chartDefinition = document.getElementById("mermaid-content").textContent;
+      // Get the container element.
+      var element = document.getElementById("mermaidChart");
+      // Render the diagram explicitly, passing the container as the fourth argument.
+      mermaid.render("theGraph", chartDefinition, function(svgCode) {
+        element.innerHTML = svgCode;
+      }, element);
     });
   </script>
 </body>
