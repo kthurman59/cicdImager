@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Pipeline Diagram</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <!-- Load Mermaid via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
+  <meta charset="UTF-8">
+  <title>Pipeline Diagram</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Load Mermaid via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
 </head>
 <body>
-    <h1>CI/CD Pipeline Diagram</h1>
-    <div class="mermaid">
-        <%= diagram %>
-    </div>
-    <br>
-    <a href="/">Upload Another File</a>
+  <h1>CI/CD Pipeline Diagram</h1>
+  <div class="mermaid">
+    <%= diagram %>
+  </div>
+  <br>
+  <a href="/">Upload Another File</a>
+  <script>
+    // Reinitialize Mermaid after the DOM has fully loaded to ensure proper rendering.
+    document.addEventListener("DOMContentLoaded", function() {
+      mermaid.contentLoaded();
+    });
+  </script>
 </body>
 </html>
 
